@@ -1,5 +1,6 @@
 package ru.safiullina.HW_Hibernate_DAO.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -10,24 +11,28 @@ public class Person {
 
     @EmbeddedId
     private PersonPrimaryKey personPrimaryKey;
-    private String phone_number;
-    private String city_of_living;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "city_of_living")
+    private String cityOfLiving;
 
     public Person() {
     }
 
-    public Person(String name, String surname, int age, String phone_number, String city_of_living) {
+    public Person(String name, String surname, int age, String phoneNumber, String cityOfLiving) {
         this.personPrimaryKey = new PersonPrimaryKey(name,surname,age);
-        this.phone_number = phone_number;
-        this.city_of_living = city_of_living;
+        this.phoneNumber = phoneNumber;
+        this.cityOfLiving = cityOfLiving;
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "personPrimaryKey=" + personPrimaryKey +
-                ", phone_number='" + phone_number + '\'' +
-                ", city_of_living='" + city_of_living + '\'' +
+                ", phone_number='" + phoneNumber + '\'' +
+                ", city_of_living='" + cityOfLiving+ '\'' +
                 '}';
     }
 
@@ -39,19 +44,19 @@ public class Person {
         this.personPrimaryKey = personPrimaryKey;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phone_number) {
+        this.phoneNumber = phone_number;
     }
 
-    public String getCity_of_living() {
-        return city_of_living;
+    public String getCityOfLiving() {
+        return cityOfLiving;
     }
 
-    public void setCity_of_living(String city_of_living) {
-        this.city_of_living = city_of_living;
+    public void setCityOfLiving(String city) {
+        this.cityOfLiving = city;
     }
 }
