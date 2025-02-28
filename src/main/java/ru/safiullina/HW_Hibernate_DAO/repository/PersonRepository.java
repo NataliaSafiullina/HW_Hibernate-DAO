@@ -8,9 +8,9 @@ import ru.safiullina.HW_Hibernate_DAO.entity.PersonPrimaryKey;
 import java.util.List;
 import java.util.Optional;
 
-public interface PersonRepository extends JpaRepository <Person, PersonPrimaryKey> {
+public interface PersonRepository extends JpaRepository<Person, PersonPrimaryKey> {
 
-    List<Person> findAllByCityOfLiving (String cityOfLiving);
+    List<Person> findAllByCityOfLiving(String cityOfLiving);
 
     List<Person> findAllByPersonPrimaryKey_AgeLessThanOrderByPersonPrimaryKey_Age(Integer age);
 

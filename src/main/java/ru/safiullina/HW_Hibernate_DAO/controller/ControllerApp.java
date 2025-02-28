@@ -21,17 +21,17 @@ public class ControllerApp {
     }
 
     @GetMapping("/persons/by-city")
-    public List<Person> getPersonByCity(CityDto cityDto){
+    public List<Person> getPersonByCity(CityDto cityDto) {
         return service.getPersonsByCity(cityDto);
     }
 
     @GetMapping("/persons/by-age")
-    public List<Person> getPersonByCity(@RequestParam Integer age){
+    public List<Person> getPersonByCity(@RequestParam Integer age) {
         return service.getPersonByAge(age);
     }
 
     @GetMapping("/persons/by-names")
-    public Optional<Person> getPersonByNameSurname(@RequestParam String name, @RequestParam String surname){
+    public Optional<Person> getPersonByNameSurname(@RequestParam String name, @RequestParam String surname) {
         return service.getPersonByNameSurname(name, surname);
     }
 

@@ -19,7 +19,7 @@ public class ServiceApp {
     }
 
 
-    public List<Person> getPersonsByCity(CityDto cityDto){
+    public List<Person> getPersonsByCity(CityDto cityDto) {
         return repository.findAllByCityOfLiving(cityDto.getCity());
     }
 

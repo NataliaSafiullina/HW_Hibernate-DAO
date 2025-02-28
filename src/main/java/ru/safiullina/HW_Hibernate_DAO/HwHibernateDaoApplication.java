@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class HwHibernateDaoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HwHibernateDaoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HwHibernateDaoApplication.class, args);
+    }
 
 }

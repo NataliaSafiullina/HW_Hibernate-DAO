@@ -22,7 +22,7 @@ public class Person {
     }
 
     public Person(String name, String surname, int age, String phoneNumber, String cityOfLiving) {
-        this.personPrimaryKey = new PersonPrimaryKey(name,surname,age);
+        this.personPrimaryKey = new PersonPrimaryKey(name, surname, age);
         this.phoneNumber = phoneNumber;
         this.cityOfLiving = cityOfLiving;
     }
@@ -32,7 +32,7 @@ public class Person {
         return "Person{" +
                 "personPrimaryKey=" + personPrimaryKey +
                 ", phone_number='" + phoneNumber + '\'' +
-                ", city_of_living='" + cityOfLiving+ '\'' +
+                ", city_of_living='" + cityOfLiving + '\'' +
                 '}';
     }
 
