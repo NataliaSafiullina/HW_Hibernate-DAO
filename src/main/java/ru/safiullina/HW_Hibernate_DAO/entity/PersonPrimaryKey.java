@@ -11,6 +11,9 @@ public class PersonPrimaryKey implements Serializable {
     private String surname;
     private int age;
 
+    public PersonPrimaryKey() {
+    }
+
     public PersonPrimaryKey(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
