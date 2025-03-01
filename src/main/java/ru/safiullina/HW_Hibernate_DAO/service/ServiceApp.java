@@ -20,15 +20,15 @@ public class ServiceApp {
 
 
     public List<Person> getPersonsByCity(CityDto cityDto) {
-        return repository.findAllByCityOfLiving(cityDto.getCity());
+        return repository.selectByCity(cityDto.getCity());
     }
 
     public List<Person> getPersonByAge(Integer age) {
-        return repository.findAllByPersonPrimaryKey_AgeLessThanOrderByPersonPrimaryKey_Age(age);
+        return repository.selectByAge(age);
     }
 
     public Optional<Person> getPersonByNameSurname(String name, String surname) {
-        return repository.findFirstByPersonPrimaryKey_NameAndPersonPrimaryKey_Surname(name, surname);
+        return repository.selectByNameAndSurname(name, surname);
     }
 
 
