@@ -20,16 +20,32 @@ public class ControllerApp {
         this.service = service;
     }
 
+    /**
+     * http://localhost:8080/persons/by-city?city=LA
+     * @param cityDto - город проживания
+     * @return Entity
+     */
     @GetMapping("/persons/by-city")
     public List<Person> getPersonByCity(CityDto cityDto) {
         return service.getPersonsByCity(cityDto);
     }
 
+    /**
+     * http://localhost:8080/persons/by-age?age=61
+     * @param age - возраст
+     * @return Entity
+     */
     @GetMapping("/persons/by-age")
     public List<Person> getPersonByCity(@RequestParam Integer age) {
         return service.getPersonByAge(age);
     }
 
+    /**
+     * http://localhost:8080/persons/by-names?name=Jared&surname=Leto
+     * @param name - имя
+     * @param surname - фамилия
+     * @return Entity
+     */
     @GetMapping("/persons/by-names")
     public Optional<Person> getPersonByNameSurname(@RequestParam String name, @RequestParam String surname) {
         return service.getPersonByNameSurname(name, surname);
