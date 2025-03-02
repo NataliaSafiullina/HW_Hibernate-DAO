@@ -2,31 +2,17 @@ package ru.safiullina.HW_Hibernate_DAO.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
-@EnableWebSecurity
+// prePostEnabled = true не указан, так как true задан по умолчанию
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfiguration {
-
-    /**
-     * Метод кодировщик паролей, который делегирует полномочия другому кодировщику паролей
-     * на основе префиксного идентификатора, например {bcrypt}.
-     *
-     * @return the PasswordEncoder to use
-     */
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
 
     /**
      * Настраивает хранилище пользователей в памяти.
@@ -35,32 +21,22 @@ public class SecurityConfiguration {
      */
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("user")
-                .roles("USER")
-                .username("admin")
-                .password("admin")
-                .roles("ADMIN")
+        UserDetails reader = User.withUsername("reader")
+                .password("{noop}read")
+                .roles("READ")
                 .build();
-        return new InMemoryUserDetailsManager(userDetails);
-    }
 
-    /**
-     * Конфигурируем безопасность на уровне endpoint
-     *
-     * @param http - объект, в котором сконфигурируем ограничения доступа.
-     * @return какой способ аутентификации использовать и для какого endpoint
-     * @throws Exception
-     */
-    @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/persons/by-city").permitAll()
-                        .requestMatchers("/persons/by-age").authenticated()
-                        .requestMatchers("/persons/by-names").hasRole("ADMIN"))
-                .formLogin(Customizer.withDefaults());
-        return http.build();
+        UserDetails writer = User.withUsername("writer")
+                .password("{noop}write")
+                .roles("WRITE")
+                .build();
+
+        UserDetails leto = User.withUsername("Leto")
+                .password("{noop}leto")
+                .roles("DELETE")
+                .build();
+
+        return new InMemoryUserDetailsManager(reader, writer, leto);
     }
 
 }

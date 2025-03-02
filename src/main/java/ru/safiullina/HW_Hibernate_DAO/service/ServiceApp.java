@@ -31,5 +31,9 @@ public class ServiceApp {
         return repository.selectByNameAndSurname(name, surname);
     }
 
+    public List<Person> getAllPersons() {
+        return repository.selectAll();
+    }
+
 
 }

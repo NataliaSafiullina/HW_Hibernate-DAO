@@ -23,4 +23,7 @@ public interface PersonRepository extends JpaRepository<Person, PersonPrimaryKey
             "p.personPrimaryKey.name = :name and " +
             "p.personPrimaryKey.surname = :surname")
     Optional<Person> selectByNameAndSurname(@Param("name") String name, @Param("surname") String surname);
+
+    @Query(value = "SELECT p FROM Person p")
+    List<Person> selectAll();
 }
